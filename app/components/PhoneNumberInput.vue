@@ -1,29 +1,31 @@
 <template>
-  <UFormGroup
+  <UFormField
     :error="modelValue && !results.isValid"
     label="Phone number"
     name="phone"
   >
-    <UButtonGroup class="w-full">
+    <UFieldGroup class="w-full">
       <USelectMenu
         class="w-40"
         v-model="selectedCountry"
         clear-search-on-close
-        searchable
-        searchable-placeholder="Search a country..."
-        :options="countries"
-        value-attribute="id"
+        :search-input="{
+          placeholder: 'Search a country...',
+          icon: 'i-lucide-search'
+        }"
+        :items="countries"
+        value-key="id"
       >
         <template #leading>
           <span
-            class="relative inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px]"
+            class="relative inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]"
           >
             <span class="grey-text text-xs">+{{ selectedCountryDialcode }}</span>
           </span>
         </template>
-        <template #option="{ option: country }">
+        <template #item="{ item: country }">
           <span
-            class="relative inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px]"
+            class="relative inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-[10px]"
           >
             <span class="grey-text text-xs">+{{ country.dialCode }}</span>
           </span>
@@ -50,8 +52,8 @@
           })
         "
       />
-    </UButtonGroup>
-  </UFormGroup>
+    </UFieldGroup>
+  </UFormField>
 </template>
 
 <script lang="ts" setup>
@@ -95,8 +97,8 @@ const getCountryName = (
   code: CountryCode | string,
   customCountriesNameListByIsoCode?: Record<CountryCode, string>
 ): string | undefined => {
-  if (customCountriesNameListByIsoCode?.[code]) {
-    return customCountriesNameListByIsoCode[code]
+  if (customCountriesNameListByIsoCode?.[code as CountryCode]) {
+    return customCountriesNameListByIsoCode[code as CountryCode]
   }
 
   if (displayNamesLocale !== locale || !displayNamesInstance) {
