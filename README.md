@@ -109,14 +109,6 @@ const {
 - **`getPhoneNumberResults({ phoneNumber, countryCode })`** - Validates and parses phone number
 - **`sanitizePhoneNumber(input)`** - Removes invalid characters from input
 
-## Styling
-
-The component uses:
-- **Nuxt UI** - For form components and styling
-- **Tailwind CSS** - For utility classes
-- **Lucide Icons** - For search icon
-- **Heroicons** - For validation status icons
-
 ## Technologies
 
 - **Nuxt 4** - Vue meta-framework
